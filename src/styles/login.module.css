@@ -1,0 +1,23 @@
+/* src/styles/login.module.css */
+
+/* Ajoute une classe locale aux éléments input et button */
+.input,
+.button {
+  transition: all 0.3s ease;
+}
+
+.input:focus,
+.button:hover {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+.button {
+  background-color: #4c51bf;
+  border: none;
+  color: white;
+}
+
+.button:hover {
+  background-color: #2c3e50;
+}
