@@ -38,6 +38,8 @@ const menuItems = [
     special: true,
     icon: <Crown size={16} />,
   },
+  { label: "Gestion Bot", href: "/bot", icon: <Hammer size={16} /> },
+
 ];
 
 export default function Navbar() {
