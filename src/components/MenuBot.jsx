@@ -18,6 +18,11 @@ import Of from "./Of";
 import Oh from "./Oh";
 import Os from "./Os";
 import Od from "./Od";
+import Sd from "./Sd";
+import Vc from "./Vc";
+import Vg from "./Vg";
+import Vt from "./Vt";
+import Lg from "./Lg";
 
 
 
@@ -56,6 +61,7 @@ const menuSections = {
 
 export default function MenuBot() {
     const [selected, setSelected] = useState(null);
+
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -121,6 +127,16 @@ export default function MenuBot() {
     <Oh />
   ) : selected === "Overlay Sub" ? ( // ✔️ nom exact, comme dans menuSections
     <Os />
+  ) : selected === "StreamDeck gratuit" ? ( // ✔️ nom exact, comme dans menuSections
+    <Sd />
+  ) : selected === "Voir les call" ? ( // ✔️ nom exact, comme dans menuSections
+    <Vc />
+  ) : selected === "Voir le giveaway" ? ( // ✔️ nom exact, comme dans menuSections
+    <Vg />
+  ) : selected === "Voir le tournoi" ? ( // ✔️ nom exact, comme dans menuSections
+    <Vt /> 
+  ) : selected === "Lancer un GiveAway" ? ( // ✔️ nom exact, comme dans menuSections
+    <Lg /> 
   ) : selected ? (
     <div className="bg-[#1e2638] p-6 rounded-xl text-white shadow-md">
       <h1 className="text-xl font-bold mb-2">{selected}</h1>
