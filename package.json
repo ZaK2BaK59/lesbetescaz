@@ -2,6 +2,7 @@
   "name": "lesbetescaz",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3000/",
   "scripts": {
     "dev": "next dev",
     "build": "NODE_OPTIONS='--max-old-space-size=4096' next build",

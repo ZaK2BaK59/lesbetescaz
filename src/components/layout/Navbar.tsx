@@ -1,9 +1,13 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X, ChevronDown, Dice5, Store, Youtube, Hammer, Crown, Trophy } from "lucide-react";
 import LoginPopup from "@/popups/LoginPopup";
+import Image from "next/image";
+
+
+
 
 
 const menuItems = [
@@ -46,6 +50,40 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
+  const [avatar, setAvatar] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const url = new URL(window.location.href);
+      const queryUsername = url.searchParams.get("username");
+      const queryAvatar = url.searchParams.get("avatar");
+  
+      if (queryUsername) {
+        localStorage.setItem("username", queryUsername);
+        setUsername(queryUsername);
+      } else {
+        const stored = localStorage.getItem("username");
+        if (stored) setUsername(stored);
+      }
+  
+      if (queryAvatar) {
+        localStorage.setItem("avatar", queryAvatar);
+        setAvatar(queryAvatar);
+      } else {
+        const stored = localStorage.getItem("avatar");
+        if (stored) setAvatar(stored);
+      }
+  
+      if (queryUsername || queryAvatar) {
+        url.searchParams.delete("username");
+        url.searchParams.delete("avatar");
+        window.history.replaceState({}, "", url.toString());
+      }
+    }
+  }, []);
+  
+
 
 
   const toggleDropdown = (label: string) => {
@@ -118,14 +156,41 @@ export default function Navbar() {
           ))}
         </ul>
         {/* BOUTON CONNEXION */}
-<div className="hidden lg:flex items-center">
-  <button
-    onClick={() => setIsLoginModalOpen(true)}
-    className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-full transition"
-  >
-    Connexion
-  </button>
+        <div className="hidden lg:flex items-center gap-4">
+  {username ? (
+    <>
+      <Image
+        src={avatar || "/default-avatar.png"}
+        alt="Avatar"
+        width={32}
+        height={32}
+        className="rounded-full"
+      />
+      <span className="font-semibold">@{username}</span>
+      <button
+        onClick={() => {
+          localStorage.removeItem("username");
+          localStorage.removeItem("avatar");
+          setUsername(null);
+          setAvatar(null);
+          window.location.reload();
+        }}
+        className="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-3 rounded-full text-sm"
+      >
+        Déconnexion
+      </button>
+    </>
+  ) : (
+    <button
+      onClick={() => setIsLoginModalOpen(true)}
+      className="bg-purple-600 hover:bg-purple-500 text-white font-bold py-2 px-4 rounded-full transition"
+    >
+      Connexion
+    </button>
+  )}
 </div>
+
+
 
       </nav>
 

@@ -39,8 +39,35 @@ export default function LoginPopup({ isOpen, onClose }: { isOpen: boolean; onClo
               <button
                 className="bg-purple-600 hover:bg-purple-500 transition text-white font-bold py-3 px-6 rounded-full text-lg"
                 onClick={() => {
-                  window.location.href = "https://dlive.tv/oauth2/authorize"; // ici tu mettras ton URL OAuth2 DLive
+                  const clientId = "4144371611";
+                  const redirectUri = encodeURIComponent("http://localhost:3000/api/dlive/callback"); // Pour local, à changer en prod
+                  const scope = [
+                    "identity",
+                    "chat:write",
+                    "chest:write",
+                    "comment:write",
+                    "email:read",
+                    "emote:read",
+                    "emote:write",
+                    "language:read",
+                    "moderation:read",
+                    "moderation:write",
+                    "relationship:read",
+                    "relationship:write",
+                    "streamkey:read",
+                    "streamkey:write",
+                    "streamtemplate:read",
+                    "streamtemplate:write",
+                    "subscription:read",
+                    "subsetting:write",
+                    "panel:write",
+                    "watching:read"
+                  ].join("+");
+                
+                  const authUrl = `https://dlive.tv/o/authorize?response_type=code&client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}`;
+                  window.location.href = authUrl;
                 }}
+                
               >
                 Se connecter avec DLive
               </button>

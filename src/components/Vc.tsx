@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 const initialCalls = [
   {
@@ -52,9 +53,11 @@ export default function Vc() {
             className="bg-[#2a3345] rounded-xl p-4 flex items-center justify-between shadow"
           >
             <div className="flex items-center gap-4">
-              <img
+            <Image
                 src={call.avatar}
                 alt={call.username}
+                width={48}
+                height={48}
                 className="w-12 h-12 rounded-full border-2 border-purple-600"
               />
               <div>

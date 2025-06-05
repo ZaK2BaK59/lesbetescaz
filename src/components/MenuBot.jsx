@@ -23,6 +23,7 @@ import Vc from "./Vc";
 import Vg from "./Vg";
 import Vt from "./Vt";
 import Lg from "./Lg";
+import Vr from "./Vr";
 
 
 
@@ -39,8 +40,6 @@ const menuSections = {
   Casino: ["Commandes casinos", "Overlay Obs special Casino"],
   Dinero: [
     "Voir le solde des users",
-    "Modifier un solde",
-    "Supprimer un solde",
   ],
   Chatbot: ["Modération", "Commandes", "BlackList", "Message Automatique"],
   GiveAway: ["Lancer un GiveAway"],
@@ -137,6 +136,8 @@ export default function MenuBot() {
     <Vt /> 
   ) : selected === "Lancer un GiveAway" ? ( // ✔️ nom exact, comme dans menuSections
     <Lg /> 
+  ) : selected === "Voir le solde des users" ? ( // ✔️ nom exact, comme dans menuSections
+    <Vr /> 
   ) : selected ? (
     <div className="bg-[#1e2638] p-6 rounded-xl text-white shadow-md">
       <h1 className="text-xl font-bold mb-2">{selected}</h1>
